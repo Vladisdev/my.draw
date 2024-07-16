@@ -1,1 +1,1 @@
-export * from './ui/home'
+export { Home } from './ui/home'

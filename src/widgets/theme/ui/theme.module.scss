@@ -1,0 +1,43 @@
+@import '@/shared/styles/variables';
+
+.theme {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  &__text {
+    font-size: 14px;
+  }
+
+  &__variants {
+    display: flex;
+
+    gap: 15px;
+    padding: 5px;
+
+    border: 1px solid hsl(245, 10%, 21%);
+    border-radius: 10px;
+  }
+
+  &__item {
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+
+    input[type='radio'] {
+      appearance: none;
+    }
+  }
+}
+
+.active {
+  background: $primary;
+
+  color: $bodyBackground;
+}

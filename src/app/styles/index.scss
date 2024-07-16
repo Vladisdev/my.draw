@@ -16,6 +16,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+button {
+  background: unset;
+}
+
 a {
   font-weight: 500;
   color: $primary;
@@ -29,8 +44,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+
   width: 100vw;
   min-height: 100vh;
 }
@@ -42,8 +56,5 @@ body {
   }
   a:hover {
     color: $primaryDarker;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

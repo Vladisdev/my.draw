@@ -14,5 +14,9 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/consistent-type-imports': [
+      2,
+      { fixStyle: 'separate-type-imports' },
+    ],
   },
 }

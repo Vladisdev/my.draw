@@ -1,0 +1,33 @@
+.menu {
+  position: relative;
+
+  width: fit-content;
+
+  &__button {
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: hsl(245, 10%, 21%);
+
+    transition: 0.2s background ease-in-out;
+
+    &:hover {
+      background: hsl(245, 20%, 21%);
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+
+    padding: 8px;
+    margin-top: 10px;
+
+    border-radius: 8px;
+
+    background: #232329;
+  }
+}
