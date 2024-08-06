@@ -1,4 +1,4 @@
-import { Theme } from '../theme'
+import { Theme } from '../../theme'
 import styles from './menu.module.scss'
 
 export const MenuList = () => {
