@@ -1,0 +1,37 @@
+@import '@/shared/styles/_variables.scss';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  border-radius: 0.5rem;
+
+  background-color: $primary;
+
+  color: $darkText;
+
+  transition: 0.2s filter ease-in-out;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  &__secondary {
+    background-color: $colorSurfaceLow;
+
+    color: $textOnSurface;
+  }
+
+  &__ghost {
+    background-color: transparent;
+
+    color: $textOnSurface;
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
