@@ -1,0 +1,25 @@
+@import '@/shared/styles/_variables.scss';
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $figureSelectionBackground;
+
+  border-radius: 8px;
+
+  padding: 4px;
+
+  &__item {
+    border-radius: inherit;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__active {
+      background: $colorSurfacePrimary;
+    }
+  }
+}

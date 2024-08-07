@@ -9,7 +9,22 @@ export const draw = ({ rects, canvasCtx, canvasRef }: DrawProps) => {
     canvasCtx.beginPath()
     canvasCtx.lineWidth = 3
     canvasCtx.strokeStyle = '#e2e2e8'
-    canvasCtx.roundRect(rect.x, rect.y, rect.width, rect.height, 10)
+
+    switch (rect.type) {
+      case 'rect':
+        canvasCtx.roundRect(rect.x, rect.y, rect.width, rect.height, 10)
+        break
+
+      case 'line':
+        canvasCtx.moveTo(rect.x, rect.y)
+        canvasCtx.lineTo(rect.x + rect.width, rect.y + rect.height)
+        break
+
+      default:
+        console.warn('Unknown rect type')
+        break
+    }
+
     canvasCtx.stroke()
   })
 }

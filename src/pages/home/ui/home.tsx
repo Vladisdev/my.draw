@@ -1,10 +1,13 @@
+import { useFigureTypeStore } from '@/app/store/figure/figure-type.store'
 import { draw, drawResize } from '@/entities/figure'
+import type { RectObject } from '@/entities/figure/model/types'
 import { useGetWindowSize } from '@/shared/hooks'
-import type { RectObject } from '@/shared/types'
 import type { MouseEventHandler } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import styles from './home.module.scss'
 
 export const Home = () => {
+  const rectType = useFigureTypeStore((state) => state.type)
   const { windowSize } = useGetWindowSize()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -22,8 +25,9 @@ export const Home = () => {
       canvasCtx,
       canvasRef,
       rects,
+      rectType,
     })
-  }, [canvasCtx, rects])
+  }, [canvasCtx, rectType, rects])
 
   const resize: MouseEventHandler<HTMLCanvasElement> = (e) => {
     if (!canvasCtx || e.buttons !== 1) return
@@ -34,6 +38,7 @@ export const Home = () => {
       rects,
       mousePosition,
       event: e,
+      rectType,
     })
   }
 
@@ -45,7 +50,7 @@ export const Home = () => {
         y: mousePosition.y,
         width: e.pageX - mousePosition.x,
         height: e.pageY - mousePosition.y,
-        type: 'rect',
+        type: rectType,
       },
     ])
   }
@@ -53,6 +58,9 @@ export const Home = () => {
   return (
     <main>
       <canvas
+        className={`${
+          rectType === 'non-interactive' ? styles.none_interactive : ''
+        }`}
         onMouseMove={resize}
         onMouseDown={setPosition}
         onMouseUp={endRect}
