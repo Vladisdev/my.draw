@@ -15,6 +15,21 @@ export const Home = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const canvasCtx = canvasRef.current?.getContext('2d')
 
+  useEffect(() => {
+    const deleteLastCreatedFigure = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'z' && rects.length > 0) {
+        const newRects = rects.splice(0, rects.length - 1)
+        setRects(newRects)
+      }
+    }
+
+    window.addEventListener('keydown', deleteLastCreatedFigure)
+
+    return () => {
+      window.removeEventListener('keydown', deleteLastCreatedFigure)
+    }
+  }, [rects, setRects])
+
   const setPosition: MouseEventHandler<HTMLCanvasElement> = (e) => {
     e.buttons === 1 && setMousePosition({ x: e.pageX, y: e.pageY })
   }
