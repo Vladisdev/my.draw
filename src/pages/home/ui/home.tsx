@@ -1,4 +1,5 @@
 import { useFigureTypeStore } from '@/app/store/figure/figure-type.store'
+import { useRectsStore } from '@/app/store/rects/rects.store'
 import { draw, drawResize } from '@/entities/figure'
 import type { RectObject } from '@/entities/figure/model/types'
 import { useGetWindowSize } from '@/shared/hooks'
@@ -7,12 +8,12 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './home.module.scss'
 
 export const Home = () => {
-  const rectType = useFigureTypeStore((state) => state.type)
+  const currentRectType = useFigureTypeStore((state) => state.type)
+  const { rects, setRects } = useRectsStore()
   const { windowSize } = useGetWindowSize()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const canvasCtx = canvasRef.current?.getContext('2d')
-  const [rects, setRects] = useState<RectObject[]>([])
 
   const setPosition: MouseEventHandler<HTMLCanvasElement> = (e) => {
     e.buttons === 1 && setMousePosition({ x: e.pageX, y: e.pageY })
@@ -25,9 +26,9 @@ export const Home = () => {
       canvasCtx,
       canvasRef,
       rects,
-      rectType,
+      rectType: currentRectType,
     })
-  }, [canvasCtx, rectType, rects])
+  }, [canvasCtx, currentRectType, rects])
 
   const resize: MouseEventHandler<HTMLCanvasElement> = (e) => {
     if (!canvasCtx || e.buttons !== 1) return
@@ -38,28 +39,27 @@ export const Home = () => {
       rects,
       mousePosition,
       event: e,
-      rectType,
+      rectType: currentRectType,
     })
   }
 
   const endRect: MouseEventHandler<HTMLCanvasElement> = (e) => {
-    setRects([
-      ...rects,
-      {
-        x: mousePosition.x,
-        y: mousePosition.y,
-        width: e.pageX - mousePosition.x,
-        height: e.pageY - mousePosition.y,
-        type: rectType,
-      },
-    ])
+    const figure = {
+      x: mousePosition.x,
+      y: mousePosition.y,
+      width: e.pageX - mousePosition.x,
+      height: e.pageY - mousePosition.y,
+      type: currentRectType,
+    } satisfies RectObject
+
+    setRects([...rects, figure])
   }
 
   return (
     <main>
       <canvas
         className={`${
-          rectType === 'non-interactive' ? styles.none_interactive : ''
+          currentRectType === 'non-interactive' ? styles.none_interactive : ''
         }`}
         onMouseMove={resize}
         onMouseDown={setPosition}
