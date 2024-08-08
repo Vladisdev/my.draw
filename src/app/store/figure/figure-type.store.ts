@@ -1,12 +1,7 @@
-import type { RectType } from '@/entities/figure/model/types'
 import { create } from 'zustand'
+import type { FigureTypeStoreState } from './model/figure-type-store.types'
 
-interface State {
-  changeType: (type: RectType) => void
-  type: RectType
-}
-
-export const useFigureTypeStore = create<State>((set) => ({
+export const useFigureTypeStore = create<FigureTypeStoreState>((set) => ({
   type: 'non-interactive',
   changeType: (type) => set({ type }),
 }))

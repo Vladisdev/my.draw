@@ -1,10 +1,5 @@
-import type { RectObject } from '@/entities/figure/model/types'
 import { create } from 'zustand'
-
-interface RectsStoreState {
-  rects: RectObject[]
-  setRects: (rects: RectObject[]) => void
-}
+import type { RectsStoreState } from './model/rects-store.types'
 
 export const useRectsStore = create<RectsStoreState>((set) => ({
   rects: [],

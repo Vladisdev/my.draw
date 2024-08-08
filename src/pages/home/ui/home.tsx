@@ -1,5 +1,5 @@
-import { useFigureTypeStore } from '@/app/store/figure/figure-type.store'
-import { useRectsStore } from '@/app/store/rects/rects.store'
+import { useFigureTypeStore } from '@/app/store/figure'
+import { useRectsStore } from '@/app/store/rects'
 import { draw, drawResize } from '@/entities/figure'
 import type { RectObject } from '@/entities/figure/model/types'
 import { useGetWindowSize } from '@/shared/hooks'
