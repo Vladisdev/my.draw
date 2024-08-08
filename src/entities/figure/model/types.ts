@@ -22,3 +22,10 @@ export interface DrawResizeProps extends DrawProps {
   mousePosition: { x: number; y: number }
   event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
 }
+
+export interface EndRectDrawProps {
+  mousePosition: { x: number; y: number }
+  event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
+  currentRectType: RectType
+  rects: RectObject[]
+}

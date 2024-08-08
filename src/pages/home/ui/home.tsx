@@ -1,7 +1,7 @@
 import { useFigureTypeStore } from '@/app/store/figure'
 import { useRectsStore } from '@/app/store/rects'
 import { draw, drawResize } from '@/entities/figure'
-import type { RectObject } from '@/entities/figure/model/types'
+import { endRectDraw } from '@/entities/figure/model/endRectDraw'
 import { useGetWindowSize } from '@/shared/hooks'
 import type { MouseEventHandler } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -44,15 +44,14 @@ export const Home = () => {
   }
 
   const endRect: MouseEventHandler<HTMLCanvasElement> = (e) => {
-    const figure = {
-      x: mousePosition.x,
-      y: mousePosition.y,
-      width: e.pageX - mousePosition.x,
-      height: e.pageY - mousePosition.y,
-      type: currentRectType,
-    } satisfies RectObject
+    const newRects = endRectDraw({
+      currentRectType,
+      event: e,
+      mousePosition,
+      rects,
+    })
 
-    setRects([...rects, figure])
+    setRects(newRects)
   }
 
   return (
