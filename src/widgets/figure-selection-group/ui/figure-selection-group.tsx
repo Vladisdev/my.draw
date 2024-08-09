@@ -1,7 +1,7 @@
 import { FigureSelector } from '@/features/figure-selector'
 import styles from './figure-selection.module.scss'
 
-export const FigureSelection = () => {
+export const FigureSelectionGroup = () => {
   return (
     <div className={styles.group}>
       <FigureSelector type='non-interactive'>Non interactive</FigureSelector>

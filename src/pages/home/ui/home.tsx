@@ -1,6 +1,5 @@
 import { useRectsStore } from '@/app/store/rects'
-import { draw, drawResize } from '@/entities/figure'
-import { endRectDraw } from '@/entities/figure/model/endRectDraw'
+import { draw, drawResize, endRectDraw } from '@/entities/figure'
 import { useFigureTypeStore } from '@/features/figure-selector'
 import { useGetWindowSize } from '@/shared/hooks'
 import type { MouseEventHandler } from 'react'
